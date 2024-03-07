@@ -1,13 +1,11 @@
 public class Main {
-     private Employee[] employees;
-
 
      public static void main(String[] args) {
-         Employee ivanov = new Employee(Employee.counter,"Ivanov Ivan Ivanovich", 5, 165000);
-         Employee girich = new Employee(Employee.counter,"Girich Daniil Denisovich", 3, 115000);
-         Employee nicolaev = new Employee(Employee.counter,"Nicolaev Nicolay Nicolaivich", 2, 125000);
-         Employee shtopin = new Employee(Employee.counter,"Shtopin Denis Alexsandrovich", 1, 185000);
-         Employee smirnov = new Employee(Employee.counter,"Smirnov Maks Olegovich", 4, 145000);
+         Employee ivanov = new Employee(Employee.getCounter(),"Ivanov Ivan Ivanovich", 5, 165000);
+         Employee girich = new Employee(Employee.getCounter(),"Girich Daniil Denisovich", 3, 115000);
+         Employee nicolaev = new Employee(Employee.getCounter(),"Nicolaev Nicolay Nicolaivich", 2, 125000);
+         Employee shtopin = new Employee(Employee.getCounter(),"Shtopin Denis Alexsandrovich", 1, 185000);
+         Employee smirnov = new Employee(Employee.getCounter(),"Smirnov Maks Olegovich", 4, 145000);
          checkDepartmentNumber(ivanov.getDepartmentNumber());
          Employee[] employee = new Employee[10];
              employee[0] = ivanov;
@@ -24,8 +22,8 @@ public class Main {
          findTheMinimumSalary(employee);
          System.out.println("Минимальная зп: " + findTheMinimumSalary(employee));
          printEmployeeWithMinimumSalary(employee,findTheMinimumSalary(employee));
-         calculateAverageSalary(calculateTheAmountOfSalaryCosts(employee));
-         System.out.println("Средняя заработная плата: " + calculateAverageSalary(calculateTheAmountOfSalaryCosts(employee)));
+         calculateAverageSalary(calculateTheAmountOfSalaryCosts(employee),Employee.getCounter());
+         System.out.println("Средняя заработная плата: " + calculateAverageSalary(calculateTheAmountOfSalaryCosts(employee),Employee.getCounter()));
          printFIO(employee);
 
 
@@ -51,7 +49,7 @@ public class Main {
          return sum;
      }
      public static double findTheMaximumSalary(Employee employee []){
-         double maxMoney = -1;
+         double maxMoney = Double.MIN_VALUE;;
          for (int i = 0; i < employee.length; i ++){
              if (employee[i] != null && employee[i].getSalary() > maxMoney) {
                  maxMoney = employee[i].getSalary();
@@ -67,7 +65,7 @@ public class Main {
          }
      }
      public static double findTheMinimumSalary(Employee employee []){
-         double minMoney = 1000000;
+         double minMoney = Double.MAX_VALUE;
          for (int i = 0; i < employee.length; i ++){
              if (employee[i] != null && employee[i].getSalary() < minMoney) {
                  minMoney = employee[i].getSalary();
@@ -82,7 +80,7 @@ public class Main {
              }
          }
      }
-     public static double calculateAverageSalary(double sum){
+     public static double calculateAverageSalary(double sum, int counter){
          double averageSalary = sum / 5;
          return averageSalary;
      }
