@@ -81,7 +81,7 @@ public class Main {
          }
      }
      public static double calculateAverageSalary(double sum, int counter){
-         double averageSalary = sum / 5;
+         double averageSalary = sum / counter;
          return averageSalary;
      }
      public static void printFIO(Employee employee []){
